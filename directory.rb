@@ -23,13 +23,17 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  if students.length() > 0
+    students.each_with_index do |student, index|
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(5)
+    end
+  else
+    puts "We have no students!"
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  students.count != 1 ? (puts "Overall, we have #{students.count} great students") : (puts "Overall, we have only a single great student")
 end
 
 #nothing will happen until we call the methods
