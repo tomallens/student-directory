@@ -45,16 +45,22 @@ end
 #    How can you modify the program to print a number before the name of each student, e.g. "1. Dr. Hannibal Lecter"? 
 #    Hint: look into each_with_index()
 # 6. Research how the method center() of the String class works. Use it in your code to make the output beautifully aligned.
+#12. What happens if the user doesn't enter any students? It will try to print an empty list. How can you use an if statement
+#    (control flow) to only print the list if there is at least one student in there?
 def print_each(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(5)
+  if students.length() > 0
+    students.each_with_index do |student, index|
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(5)
+    end
+  else
+    puts "We have no students!"
   end
 end
 
 # 8. Once you complete the previous exercise, change the way the users are displayed: print them grouped by cohorts.
 #    To do this, you'll need to get a list of all existing cohorts (the map() method may be useful but it's not the only option),
 #    iterate over it and only print the students from that cohort.
-def print_each(students)
+def print_cohort(students)
   students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(5)
   end
@@ -82,7 +88,7 @@ end
 # 9. Right now if we have only one student, the user will see a message "Now we have 1 students", whereas it should be 
 #    "Now we have 1 student". How can you fix it so that it uses the singular form when appropriate and plural form otherwise?
 def print_footer(students)
-  students.count > 1 ? (puts "Overall, we have #{students.count} great students") : (puts "Overall, we have only a single great student")
+  students.count != 1 ? (puts "Overall, we have #{students.count} great students") : (puts "Overall, we have only a single great student")
 end
 
 #nothing will happen until we call the methods
